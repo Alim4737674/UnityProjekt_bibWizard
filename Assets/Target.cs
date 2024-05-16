@@ -23,14 +23,18 @@ public class Target : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision2D)
     {
 
-        float x = Random.Range(-9,9);
-        float y = Random.value * 10 -5;
-        Instantiate(tragetPrefab, new Vector3(0, -3, 0), Quaternion.identity);
+        float x = Random.Range(-3,3);
+        float y = Random.Range(-3,3);
+        Instantiate(tragetPrefab, new Vector3(x, y, 0), Quaternion.identity);
         Destroy(gameObject);
+        Hud.score ++;
+        Wizard player = Wizard.player;
+        PlayerStats stats = player.stats;
+        stats.GainXp(1);
 
     }
-    
 
-    
+
+
 
 }

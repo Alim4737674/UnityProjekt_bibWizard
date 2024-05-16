@@ -10,10 +10,18 @@ public class Wizard : MonoBehaviour
     Vector3 lastMovement = Vector3.zero;
     private Animator animator;
 
+    public PlayerStats stats;
+
+    public static Wizard player;
+    float ManaTimer = 0f;
+    public static int Mana = 100;
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        stats = new PlayerStats();
+        player = this;
     }
 
     // Update is called once per frame
@@ -60,11 +68,37 @@ public class Wizard : MonoBehaviour
 
 
         castTimer -= Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.Space) && castTimer <= 0) {
+        if (Input.GetKeyDown(KeyCode.Space) && castTimer <= 0 && Mana > 5) {
             GameObject obj = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
             obj.GetComponent<Fireball>().direction = lastMovement;
             castTimer = 1;
+            animator.SetBool("Attack", true);
+            Mana -= 10;
+            
+        }
+        else
+        {
+            animator.SetBool("Attack", false);
+        }
+
+        
+        ManaTimer -= Time.deltaTime;
+        if (ManaTimer <= 0)
+        {
+            Mana += 5;
+            ManaTimer += 5;
+        }
+
+        if (Mana > 100)
+        {
+            Mana -= 5;
         }
 
     }
+
+        public static PlayerStats GetStats()
+        {
+            return player.stats;
+        }
+
 }

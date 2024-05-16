@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d6d9dcdc837d64fb4fe3c11e0ee1b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tragetPrefab: {fileID: 0}
+  tragetPrefab: {fileID: 6534503882300768546}
 --- !u!58 &7493919246944321271
 CircleCollider2D:
   m_ObjectHideFlags: 0
