@@ -4,29 +4,36 @@ using UnityEngine;
 
 public class Wizard : MonoBehaviour
 {
+    public static Wizard player;
+
     public GameObject fireballPrefab;
     float castTimer = 0f;
     float movementSpeed = 2.0f;
     Vector3 lastMovement = Vector3.zero;
     private Animator animator;
 
+    public int hp;
+    public float mana;
+
     public PlayerStats stats;
 
-    public static Wizard player;
-    float ManaTimer = 0f;
-    public static int Mana = 100;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
         stats = new PlayerStats();
+        hp = stats.maxHP;
+        mana = stats.maxMana;
+
         player = this;
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
-    {   
+    {
+        // Movement 
 
         Vector3 movement = Vector3.zero;
 
@@ -50,55 +57,78 @@ public class Wizard : MonoBehaviour
         if (movement.x > 0 || movement.y > 0 || movement.x < 0 || movement.y < 0)
         {
             lastMovement = movement;
+        }
+
+        float sprintSpeedFactor = 1.0f;
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            sprintSpeedFactor = 8.0f;
+        }
+
+        transform.position += movement.normalized * Time.deltaTime * stats.movementSpeed * sprintSpeedFactor;
+
+        // Animation
+
+        if (movement.magnitude > 0)
+        {
             animator.SetBool("Walking", true);
-            transform.localScale = new Vector3(1,1,1);
         }
         else
         {
             animator.SetBool("Walking", false);
         }
 
-
-        float sprintSpeedFactor = 1.0f;
-        if (Input.GetKey(KeyCode.LeftShift)) {
-            sprintSpeedFactor = 2.0f;
+        // Character drehen
+        if (movement.x < 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        if (movement.x > 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+        if (movement.y < 0)
+        {
+            GetComponent<SpriteRenderer>().flipY = true;
+        }
+        if (movement.y > 0)
+        {
+            GetComponent<SpriteRenderer>().flipY = false;
         }
 
-        transform.position += movement.normalized * Time.deltaTime * movementSpeed * sprintSpeedFactor;
 
+        // Casting
 
         castTimer -= Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.Space) && castTimer <= 0 && Mana > 5) {
+        if (Input.GetKeyDown(KeyCode.Space) && castTimer <= 0 && mana > 0)
+        {
+            mana -= 10;
             GameObject obj = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
             obj.GetComponent<Fireball>().direction = lastMovement;
-            castTimer = 1;
+            castTimer = stats.castingTime;
             animator.SetBool("Attack", true);
-            Mana -= 10;
-            
         }
-        else
+        if (Input.GetKeyUp(KeyCode.Space))
         {
             animator.SetBool("Attack", false);
         }
 
-        
-        ManaTimer -= Time.deltaTime;
-        if (ManaTimer <= 0)
-        {
-            Mana += 5;
-            ManaTimer += 5;
-        }
 
-        if (Mana > 100)
+        // Mana 
+        mana = mana + Time.deltaTime * stats.manaRegeneration;
+        if (mana > stats.maxMana)
         {
-            Mana -= 5;
+            mana = stats.maxMana;
         }
 
     }
 
-        public static PlayerStats GetStats()
-        {
-            return player.stats;
-        }
+
+
+    public static PlayerStats GetStats()
+    {
+        return player.stats;
+    }
+
 
 }

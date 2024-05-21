@@ -22,6 +22,16 @@ public class PlayerStats
         manaRegeneration += 0.2f;
         level += 1;
         Debug.Log(level);
+
+        if(level >= 7 ) 
+        {
+            Debug.Log("You are God!!!");
+            //Hud.scoreText.text = "YOU ARE INSANE!!!";
+            maxHP += 20;
+            maxMana += 20;
+            manaRegeneration += 5;
+            castingTime = castingTime - 0.2f;
+        }
     }
 
     public void GainXp(int newxp) {

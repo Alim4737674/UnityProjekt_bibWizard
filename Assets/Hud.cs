@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Hud : MonoBehaviour
 {
@@ -10,7 +11,14 @@ public class Hud : MonoBehaviour
     public TMP_Text HealthText;
     public TMP_Text LevelText;
 
+
     public static int score = 0;
+
+    public Image HealthImage;
+    public Image ManaImage;
+    public Image LevelImage;
+
+
     /*public static int Level = 1;
     public static int Health = 150;*/
 
@@ -25,18 +33,27 @@ public class Hud : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerStats stats = Wizard.player.stats;
+        Wizard w = Wizard.player;
+        PlayerStats s = w.stats;
+        float maxMana = s.maxMana;
+        int maxHP = s.maxHP;
+        int displayMana = (int)w.mana;
+
         scoreText.text = "Score: " + score;
-        ManaText.text = "Mana: " + Wizard.Mana;
-        HealthText.text = "Health: " + stats.Health;
-        LevelText.text = "Level: " + stats.level;
+        HealthText.text = "Health: " + w.hp + "|" + maxHP;
+        ManaText.text = "Mana: " + displayMana + "|" + maxMana;
+        LevelText.text = "Level: " + s.level;
 
 
 
+        float healthPercentage = (float)w.hp / (float)maxHP;
+        HealthImage.transform.localScale = new Vector3(healthPercentage, 1, 1);
 
+        float ManaPercentage = (float)w.mana / (float)maxMana;
+        ManaImage.transform.localScale = new Vector3(ManaPercentage, 1, 1);
 
-
-
+        float LevelPercentage = (float)w.mana / (float)maxMana;
+        LevelImage.transform.localScale = new Vector3(LevelPercentage, 1, 1);
 
     }
 }
