@@ -10,6 +10,7 @@ public class Hud : MonoBehaviour
     public TMP_Text ManaText;
     public TMP_Text HealthText;
     public TMP_Text LevelText;
+    public static string Text;
 
 
     public static int score = 0;
@@ -39,7 +40,8 @@ public class Hud : MonoBehaviour
         int maxHP = s.maxHP;
         int displayMana = (int)w.mana;
 
-        scoreText.text = "Score: " + score;
+        Hud.Text = "Score: " + score;
+        scoreText.text = Hud.Text;
         HealthText.text = "Health: " + w.hp + "|" + maxHP;
         ManaText.text = "Mana: " + displayMana + "|" + maxMana;
         LevelText.text = "Level: " + s.level;
@@ -47,13 +49,31 @@ public class Hud : MonoBehaviour
 
 
         float healthPercentage = (float)w.hp / (float)maxHP;
-        HealthImage.transform.localScale = new Vector3(healthPercentage, 1, 1);
+        HealthImage.transform.localScale = new Vector3(healthPercentage * 1.47f, 1.155f, 1);
 
         float ManaPercentage = (float)w.mana / (float)maxMana;
-        ManaImage.transform.localScale = new Vector3(ManaPercentage, 1, 1);
+        ManaImage.transform.localScale = new Vector3(ManaPercentage * 1.47f, 1.155f, 1);
 
         float LevelPercentage = (float)w.mana / (float)maxMana;
-        LevelImage.transform.localScale = new Vector3(LevelPercentage, 1, 1);
+        LevelImage.transform.localScale = new Vector3(LevelPercentage * 1.47f, 1.155f, 1);
 
+    }
+}
+
+public class CanvasController : MonoBehaviour
+{
+
+
+    void Start()
+    {
+        Canvas.SetActive(false);
+    }
+
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Canvas.SetActive(true);
+        }
     }
 }

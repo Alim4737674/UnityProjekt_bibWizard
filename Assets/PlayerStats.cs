@@ -26,7 +26,7 @@ public class PlayerStats
         if(level >= 7 ) 
         {
             Debug.Log("You are God!!!");
-            //Hud.scoreText.text = "YOU ARE INSANE!!!";
+            Hud.Text = "YOU ARE INSANE!!!";
             maxHP += 20;
             maxMana += 20;
             manaRegeneration += 5;
