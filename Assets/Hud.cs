@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,7 +29,7 @@ public class Hud : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -54,26 +55,10 @@ public class Hud : MonoBehaviour
         float ManaPercentage = (float)w.mana / (float)maxMana;
         ManaImage.transform.localScale = new Vector3(ManaPercentage * 1.47f, 1.155f, 1);
 
-        float LevelPercentage = (float)w.mana / (float)maxMana;
-        LevelImage.transform.localScale = new Vector3(LevelPercentage * 1.47f, 1.155f, 1);
+        
+
 
     }
 }
 
-public class CanvasController : MonoBehaviour
-{
 
-
-    void Start()
-    {
-        Canvas.SetActive(false);
-    }
-
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Canvas.SetActive(true);
-        }
-    }
-}
