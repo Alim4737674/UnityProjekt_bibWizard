@@ -27,9 +27,9 @@ public class Target : MonoBehaviour
         float y = Random.Range(-3,3);
         Instantiate(tragetPrefab, new Vector3(x, y, 0), Quaternion.identity);
         Destroy(gameObject);
-        Hud.score ++;
+        Gamemanager.Instance.score ++;
         Wizard player = Wizard.player;
-        PlayerStats stats = player.stats;
+        PlayerStats stats = Wizard.stats;
         stats.GainXp(1);
 
     }

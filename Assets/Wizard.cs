@@ -15,14 +15,18 @@ public class Wizard : MonoBehaviour
     public int hp;
     public float mana;
 
-    public PlayerStats stats;
+    public static PlayerStats stats;
 
     
 
     // Start is called before the first frame update
     void Start()
     {
-        stats = new PlayerStats();
+        if (stats == null)
+        {
+            stats = new PlayerStats();
+        }
+
         hp = stats.maxHP;
         mana = stats.maxMana;
 
@@ -127,7 +131,7 @@ public class Wizard : MonoBehaviour
 
     public static PlayerStats GetStats()
     {
-        return player.stats;
+        return stats;
     }
 
 

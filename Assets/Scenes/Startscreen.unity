@@ -203,9 +203,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2049591170}
-        m_TargetAssemblyTypeName: Gamemanager, Assembly-CSharp
-        m_MethodName: OnClickStart
+      - m_Target: {fileID: 2147341482}
+        m_TargetAssemblyTypeName: titlebuttons, Assembly-CSharp
+        m_MethodName: ClickExit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -336,9 +336,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2049591170}
-        m_TargetAssemblyTypeName: Gamemanager, Assembly-CSharp
-        m_MethodName: OnClickStart
+      - m_Target: {fileID: 2147341482}
+        m_TargetAssemblyTypeName: titlebuttons, Assembly-CSharp
+        m_MethodName: ClickOnStart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -889,9 +889,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2049591170}
-        m_TargetAssemblyTypeName: Gamemanager, Assembly-CSharp
-        m_MethodName: OnClickStart
+      - m_Target: {fileID: 2147341482}
+        m_TargetAssemblyTypeName: titlebuttons, Assembly-CSharp
+        m_MethodName: ClickOnNewGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1299,17 +1299,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2049591170 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1091332057727911211, guid: 6a5a73efd694bff4487b9c9d020ae7f2, type: 3}
-  m_PrefabInstance: {fileID: 8080517549890410054}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24acf046328d9184db19b1f406d3ea3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2147341477
 GameObject:
   m_ObjectHideFlags: 0
@@ -1322,6 +1311,7 @@ GameObject:
   - component: {fileID: 2147341480}
   - component: {fileID: 2147341479}
   - component: {fileID: 2147341478}
+  - component: {fileID: 2147341482}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1415,6 +1405,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &2147341482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2147341477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52ea366de6bac654fa7627b30a9721b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8080517549890410054
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1487,5 +1489,5 @@ SceneRoots:
   - {fileID: 1960776376}
   - {fileID: 2147341481}
   - {fileID: 835687696}
-  - {fileID: 8080517549890410054}
   - {fileID: 1345179220}
+  - {fileID: 8080517549890410054}

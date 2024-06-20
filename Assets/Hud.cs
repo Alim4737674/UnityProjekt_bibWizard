@@ -36,13 +36,13 @@ public class Hud : MonoBehaviour
     void Update()
     {
         Wizard w = Wizard.player;
-        PlayerStats s = w.stats;
+        PlayerStats s = Wizard.stats;
         float maxMana = s.maxMana;
         int maxHP = s.maxHP;
         int displayMana = (int)w.mana;
 
-        Hud.Text = "Score: " + score;
-        scoreText.text = Hud.Text;
+        int score = Gamemanager.Instance.score;
+        scoreText.text = "Score: " + score;
         HealthText.text = "Health: " + w.hp + "|" + maxHP;
         ManaText.text = "Mana: " + displayMana + "|" + maxMana;
         LevelText.text = "Level: " + s.level;

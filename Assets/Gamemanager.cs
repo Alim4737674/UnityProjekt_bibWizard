@@ -11,17 +11,20 @@ public class Gamemanager : MonoBehaviour
 
     private float Counter;
 
+    public int score;
+
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            score = 0;
         }else
         {
-            //Destroy(gameObject);
+            Destroy(gameObject);
             //Application.Quit();
         }
     }
@@ -32,7 +35,7 @@ public class Gamemanager : MonoBehaviour
         if(state == "Game")
         {
             Counter += Time.deltaTime;
-            if(Counter >= 30) 
+            if(Counter >= 10) 
             {
                 Returntotitle();
                 Counter = 0;
@@ -53,14 +56,22 @@ public class Gamemanager : MonoBehaviour
     }
 
 
-    public void Secondstart() 
+    public void OnNewGame()
     {
-        
+        score = 0;
+        Wizard.stats = new PlayerStats();
+        SceneManager.LoadScene("Game");
+        state = "Game";
     }
 
 
-    
+    public void Es()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            //Pause.SetActive(true);
+        }
 
-    
 
+    }
 }
