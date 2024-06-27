@@ -37,6 +37,13 @@ public class Wizard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(false)
+        {
+            return;
+        }
+
+
+
         // Movement 
 
         Vector3 movement = Vector3.zero;

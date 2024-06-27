@@ -8,7 +8,8 @@ public class Pause : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Gamemanager.Instance.pause = gameObject;
+        gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -21,4 +22,10 @@ public class Pause : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+
+    public void OnToTitle()
+    {
+        Gamemanager.Instance.Returntotitle();
+    }
+
 }

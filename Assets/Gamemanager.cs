@@ -13,6 +13,8 @@ public class Gamemanager : MonoBehaviour
 
     public int score;
 
+    public GameObject pause;
+
 
     // Start is called before the first frame update
     void Awake()
@@ -25,7 +27,6 @@ public class Gamemanager : MonoBehaviour
         }else
         {
             Destroy(gameObject);
-            //Application.Quit();
         }
     }
 
@@ -41,6 +42,20 @@ public class Gamemanager : MonoBehaviour
                 Counter = 0;
             }
         }
+
+        if(Input.GetKeyDown(KeyCode.Escape)) 
+        {
+            if (pause.activeSelf)
+            {
+                pause.SetActive(false);
+                Time.timeScale = 1f;
+            } else
+            {
+                pause.SetActive(true);
+                Time.timeScale = 0f;
+            }
+        }
+
     }
 
     public void OnClickStart()

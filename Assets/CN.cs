@@ -26,10 +26,6 @@ public class CN : MonoBehaviour
             gamecanvas.SetActive(false);
         }
 
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            Pause.SetActive(false);
-        }
-
+       
     }
 }
